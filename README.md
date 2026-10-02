@@ -1,200 +1,261 @@
-# Notes on Using ChatGPT Dots for Long-Running Projects
+# How I Use ChatGPT Dots for Long-Running Projects
 
-These are personal observations from using ChatGPT Dots intensively for long-running creative and development work.
+[简体中文](docs/README.zh-CN.md) · [日本語](docs/README.ja.md)
 
-This is **not official OpenAI documentation**. I intentionally omit internal implementation details, identifiers, and any information related to bugs or private reports.
+I’ve been using Dots heavily for projects that need to keep moving over time.
 
-## My mental model of Dots
+After a while, I realized that treating a Dot as “a stronger chatbot” misses a lot of what makes it useful.
 
-The easiest way for me to understand Dots is:
+These days I think of my Dot more like a long-running project assistant. I handle direction, judgment, and final approval. The Dot helps keep track of where the project is, hand work off, keep things moving, and split work when several tasks can happen at once.
 
-```text
-Conversation
-    ↓
-Relevant context & memory
-    ↓
-Persistent project coordinator
-    ↓
-Reusable workers
-    ↓
-Parallel project work
-    ↓
-Workers become available for later tasks
-```
+Here are the habits that have made the biggest difference for me.
 
-In other words:
+## 1. Dots is especially useful for long-running projects
 
-> **Dots feels less like a chatbot and more like a conversational front-end for a persistent project team.**
+Normal chat is already great for one-off questions.
 
-That change in mental model made it much easier for me to use effectively.
+Dots becomes more interesting when a project lasts for hours or days and goes through many rounds of revision.
 
-## 1. Treat Dots as a project coordinator
+A project might involve:
 
-For quick one-off questions, a normal chat is often enough.
+- organizing content
+- checking references
+- building pages
+- fixing details
+- reviewing the result
 
-Dots becomes much more interesting when the task lasts for hours or days:
+Those things do not always need to happen one after another.
 
-- building a project
-- iterating on a design
-- researching several related topics
-- maintaining a long-running creative workflow
-- coordinating multiple independent tasks
+Some work can move forward in parallel while I keep talking with the Dot about new requirements. I do not have to wait for every previous task to finish before discussing what comes next.
 
-Instead of repeatedly explaining the whole project again, I use the Dot as the stable coordinator.
+That is one of the biggest differences I notice in daily use:
 
-## 2. Think in reusable workers
+**conversation and project work can keep moving at the same time.**
 
-One of the most useful patterns I observed is that project workers can behave more like persistent team members than disposable one-shot agents.
+## 2. Don’t assume every task automatically knows everything you discussed
 
-After a task is finished, I do not necessarily think of that worker as “gone.”
+This matters a lot in longer projects.
 
-Instead, I treat it as:
+After talking with a Dot for a while, it is easy to think:
 
-> finished with the current assignment, available for another assignment later.
+> We literally talked about this five minutes ago. Surely the task knows.
 
-This makes long projects much easier to organize.
+But different pieces of work do not always seem to carry exactly the same context.
 
-## 3. Give workers stable roles
+So when a conversation changes the actual deliverable, I usually make it explicit:
 
-Rather than treating every task as completely new, I found it useful to give recurring workers recognizable responsibilities.
+> Please apply this decision to the related work that is already in progress.
 
-My version eventually turned into a small **cat team**:
+I do not do this for every casual message.
 
-- **Orange Cat** — environment and world-building
-- **American Shorthair** — visual assets and presentation
-- **British Shorthair** — review and quality checking
-- **Calico Cat** — systems and structure
-- **Tabby Cat** — detail work and diagnostics
-- **Cow Cat** — flexible support for whatever needs attention
+I mainly do it when something changes:
 
-The names are just my own organizational layer, but the idea is useful:
+- the goal
+- the audience
+- the style
+- the delivery standard
+- a previously accepted approach
+- which version should now be treated as the current one
 
-> assign stable responsibilities to reusable workers.
+A short explicit handoff is much more reliable than assuming every running task picked up the change.
 
-Once I started thinking this way, coordinating larger projects became surprisingly intuitive.
+## 3. Sometimes “forgetting” just means the relevant context is not in focus
 
-## 4. Parallelize independent work
+During long projects, I occasionally ask about something we discussed earlier and the Dot does not immediately connect the dots.
 
-Dots is especially useful when a project naturally contains several independent workstreams.
+At first I treated that as:
+
+> Great, it forgot.
+
+Now I usually try something simpler:
+
+> Review the earlier project context about this, then answer again.
+
+Quite often, the missing context comes back.
+
+Because of that, I no longer expect every past detail to stay at the front of the model’s attention forever.
+
+What matters more is whether the project can recover the information when it becomes relevant again.
+
+For important projects, I also keep a very short current-state note:
+
+- which version is current
+- what has already been decided
+- what is still unfinished
+- what comes next
+- where the important files live
+
+That makes returning to the project much easier.
+
+## 4. Reusable roles are surprisingly helpful
+
+As a project becomes more complicated, I find it useful to keep a few recurring work roles.
 
 For example:
 
-```text
-Main Dot
-├── Visual design
-├── Content review
-├── Environment work
-├── Technical structure
-└── Detail refinement
-```
+- implementation
+- review
+- research
+- final integration
 
-Instead of asking one agent to do everything sequentially, I can separate tasks that do not depend heavily on one another.
+I eventually gave some of these roles cat nicknames because it made the whole thing easier to remember.
 
-This is one of the biggest differences between using Dots as “a chatbot” and using it as “a project team.”
+Then assigning work became as simple as:
 
-## 5. Memory feels retrieval-based
+> Let the review cat check this first.  
+> Let another one keep working on the edit.  
+> Have the integration role collect the result at the end.
 
-My experience does not feel like Dots simply keeps every old conversation permanently inside one enormous context window.
+The names are just my own organizational trick, but stable roles save a lot of mental overhead.
 
-A better user-level mental model is:
+You do not have to redefine the job every single time.
 
-```text
-Current conversation
-      +
-Relevant past conversations
-      +
-Long-term/project context
-      ↓
-Current response or task
-```
+## 5. Parallel work is great, but only when responsibilities are clear
 
-That means an important practical lesson is:
+Running several tasks at once is genuinely useful.
 
-> information can exist in the project history without necessarily becoming the focus of every response.
+It is also easy to create a mess if multiple workers start changing the same thing.
 
-For long projects, clear naming and consistent project structure still help a lot.
+I prefer parallel work when the tasks are fairly independent.
 
-## 6. The visible conversation is only part of the experience
+For example:
 
-The conversational surface can stay very lightweight.
+- one checks facts
+- one reviews visuals
+- one edits copy
+- one handles implementation
 
-A Dot may give a short reply such as:
+That works well.
 
-> “I’ll check that.”
+Two workers rewriting the same section at the same time usually creates more work later.
 
-while the actual project work continues separately.
+Before splitting work, I now try to answer three questions:
 
-That makes Dots feel different from traditional chat-based workflows, where the visible response itself is usually the main product.
+1. Who is allowed to make changes?
+2. Who is only reviewing?
+3. Who will integrate the final result?
 
-With Dots, the conversation increasingly feels like the **control surface** rather than the entire workspace.
+Once those are clear, parallelism becomes much more useful.
 
-## 7. Continuity matters more than raw model intelligence
+## 6. Look at the result, not only the activity indicator
 
-For this kind of workflow, the strongest model is not automatically the most useful system.
+With long-running agents, it is easy to stare at statuses like:
 
-What matters just as much is:
+- thinking
+- working
+- processing
 
-- project continuity
-- reliable state
-- reusable workers
-- clear delegation
-- memory retrieval
-- the ability to continue work without repeatedly rebuilding context
+Those tell me something is happening.
 
-For long-running work, orchestration quality can matter as much as the intelligence of any single model call.
+They do not tell me whether the project actually moved forward.
 
-## My current way of using Dots
+So I care more about concrete questions:
 
-I now think of the workflow like this:
+- Was a new file saved?
+- Was the requested change actually made?
+- Where is the result?
+- What was checked?
+- What is still unverified?
 
-```text
-Me
- ↓
-Dot
- ↓
-Small persistent project team
- ↓
-Several parallel workstreams
- ↓
-Review
- ↓
-Next iteration
-```
+At the end of a meaningful stage, I now like to ask:
 
-And occasionally:
+> What exactly changed in this round, where is the result, and what still needs checking?
 
-```text
-“Orange Cat, handle this.”
-“British Shorthair, review it.”
-“Calico Cat, check the structure.”
-```
+That makes the next session much easier.
 
-It sounds silly.
+## 7. Save important stages
 
-It is also surprisingly effective.
+This one matters a lot to me now.
 
-## Final thought
+A result can look finished in a preview while the actual editable source is still fragile or temporary.
 
-Dots makes the most sense to me when I stop asking:
+So I treat:
 
-> “How good is this chatbot?”
+**build → check → save**
 
-and start asking:
+as one complete action.
 
-> “How well can this AI team stay with a project over time?”
+Candidate versions are worth saving too.
 
-That is where the product becomes genuinely interesting.
+I would rather have a known version I can return to than rely on the current task state remembering everything perfectly.
 
-## A note on responsible sharing
+## 8. Before leaving, give the Dot a clear next stop
 
-This post was summarized and edited with the help of **GPT-5.6 Sol**.
+Dots is useful because work can continue while I am away.
 
-I specifically asked it to keep this write-up limited to safe, user-level observations and to exclude bug reproduction steps, private identifiers, internal access paths, sensitive implementation details, and anything that could help reproduce unintended behavior.
+But “keep improving it” is an extremely vague instruction.
 
-My intention is simply to share what I have learned as an enthusiastic user so that other people can understand and enjoy Dots more easily.
+I get better results when I leave a concrete stage goal, such as:
 
-I have also privately reported unusual behaviors I encountered to OpenAI rather than publishing their reproduction details.
+> Get the next version to the point where the whole flow can be reviewed.  
+> Keep the current version.  
+> Check the main problems when you are done.  
+> Stop and collect anything that needs my judgment.
 
-I like Dots and want to keep using it. I definitely do not want a harmless post about my user experience to be interpreted as hostile research or abuse. x_x
+This still leaves plenty of room for the Dot to work independently.
 
-If anything here is considered too implementation-specific to share publicly, I am happy to remove or revise it.
+It also gives the task a sensible place to stop.
+
+That is especially useful for work that may run for several hours or overnight.
+
+# How I think about Dots now
+
+For a small edit, regular chat is enough.
+
+For a clear one-off question, there is no reason to make the workflow complicated.
+
+Dots becomes most useful to me when a project lasts across many rounds, versions, decisions, and parallel workstreams.
+
+My current mental model is simple:
+
+### The Dot
+Talks with me, receives new requirements, and keeps the project direction together.
+
+### A few recurring work roles
+Handle different kinds of execution and review.
+
+### Project files and a short state record
+Make sure the work can continue tomorrow.
+
+That combination feels very different from ordinary chat.
+
+The part I value most is not one brilliant answer.
+
+It is being able to come back later and say:
+
+> Continue.
+
+…and have the project know what “continue” means.
+
+## A small suggestion for new users
+
+I would not start by designing a huge workflow.
+
+Give Dots one real project that matters to you.
+
+Use it for a few days.
+
+You will naturally start noticing:
+
+- which tasks are worth splitting up
+- which decisions need to be written down
+- which roles are worth reusing
+- which changes need to be explicitly handed off
+
+My version eventually turned into a small cat-themed work team.
+
+It is a little silly.
+
+It also works surprisingly well.
+
+---
+
+### Note
+
+These are personal observations from using ChatGPT Dots, not official OpenAI documentation.
+
+For public sharing, I have kept this write-up at the normal user-workflow level. It does not include private conversations, account information, internal identifiers, unintended access paths, or reproduction details for unresolved issues.
+
+I organized the usage notes myself, with **GPT-5.6 Sol** helping with editing and multilingual versions.
+
+If anything here is considered inappropriate to share publicly, I am happy to revise it.
